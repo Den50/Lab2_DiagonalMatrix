@@ -1,15 +1,16 @@
 #pragma once
 
-//using namespace std;
 
-template <class T>
-struct Node
-{
-    T val;
-    Node<T>* next;
-};
+namespace MAIN {
+    template <class T>
+    struct Node
+    {
+        T val;
+        Node<T>* next;
+        Node<T>* prev;
+    };
 
-template <class T> class LinkedList{
+    template <class T> class LinkedList {
     private:
         Node<T>* first;
         Node<T>* last;
@@ -25,17 +26,20 @@ template <class T> class LinkedList{
         T GetFirst();
         T GetLast();
         T Get(int index);
-        LinkedList<T>* GetSubList(int startIndex, int endIndex);
+        T operator[](int index);
+        //void Set(LinkedList<T>& source);
+        //LinkedList<T>* GetSubList(int startIndex, int endIndex);
 
         // operations methods
         void Append(T valueToInsert);
         void Prepand(T valueToInsert);
-        //void InsertAt(T item, int index);
+        void InsertAt(T item, int index);
         //LinkedList<T>* Concat(LinkedList<T>* list);
 
         // other methods
         bool Pop();
         void Print();
         bool IsEmpty();
-        void Clear();
-};
+    };
+}
+

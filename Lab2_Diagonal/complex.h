@@ -1,5 +1,5 @@
 #pragma once
-// this module contain struct and functions for work with complex numbers
+// this module contains struct and functions for work with complex numbers
 
 // functions:
 // add(a, b) -> (a_R + b_R) + (a_C + b_C)i
@@ -9,17 +9,48 @@
 // multiplyOnAlpha(a, alpha) -> (a_R + b_R) + (a_C + b_C)i
 
 
-struct Complex {
+struct _Complex_ {
     double real;
-    double im;
+    double imaginary;
 };
-typedef struct Complex complex;
+typedef struct _Complex_ complex;
 
-//signatures
-complex createComplex(double real, double im, complex* container);
-complex complex_summ(complex a, complex b);
-complex complex_minus(complex a, complex b);
-complex complex_multiply(complex a, complex b);
-complex complex_division(complex a, complex b);
-complex complex_multiplyOnAlpha(complex a, double alpha);
-void complex_print(complex* a);
+namespace MAIN {
+    class Complex {
+    private:
+        complex data;
+    public:
+        // Constructors
+        Complex(Complex* par);
+        Complex(double real, double imaginary);
+        Complex();
+
+        // Getters:
+        double getReal();
+        double getIm();
+        complex get();
+
+        // Setters:
+        void set(double real, double imaginary);
+
+        // functions
+        Complex add(Complex operand);
+        Complex sub(Complex operand);
+        Complex multiply(Complex a);
+        Complex multiplyOnAlpha(double alpha);
+
+        bool isEqual(Complex operand);
+
+        // overloading operators
+        Complex operator+(Complex operand);
+        Complex operator-(Complex operand);
+        Complex operator*(Complex a);
+        Complex operator*(double alpha);
+        bool operator==(Complex operand);
+        bool operator!=(Complex operand);
+
+        void print();
+
+    };
+}
+

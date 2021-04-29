@@ -1,2 +1,13 @@
-﻿  LinkedList.cpp
+﻿  DynamicArray.cpp
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\DynamicArray.cpp(27,2): warning C4002: слишком много аргументов для вызова макроса, подобного функции, "assert"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\DynamicArray.cpp(16): warning C4661: void MAIN::DynamicArray<long>::Print(void): отсутствует подходящее определение для запроса на явное создание экземпляра шаблона
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\DynamicArray.h(26): message : см. объявление "MAIN::DynamicArray<long>::Print"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\DynamicArray.cpp(18): warning C4661: void MAIN::DynamicArray<double>::Print(void): отсутствует подходящее определение для запроса на явное создание экземпляра шаблона
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\DynamicArray.h(26): message : см. объявление "MAIN::DynamicArray<double>::Print"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\DynamicArray.cpp(57): warning C4661: void MAIN::DynamicArray<long>::Print(void): отсутствует подходящее определение для запроса на явное создание экземпляра шаблона
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\DynamicArray.h(26): message : см. объявление "MAIN::DynamicArray<long>::Print"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\DynamicArray.cpp(57): warning C4661: void MAIN::DynamicArray<double>::Print(void): отсутствует подходящее определение для запроса на явное создание экземпляра шаблона
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\DynamicArray.h(26): message : см. объявление "MAIN::DynamicArray<double>::Print"
+  Lab2_Diagonal.cpp
+  Создание кода...
   Lab2_Diagonal.vcxproj -> D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2_Diagonal.exe

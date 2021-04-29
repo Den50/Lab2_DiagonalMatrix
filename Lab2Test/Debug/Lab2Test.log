@@ -1,0 +1,4 @@
+﻿  Lab2Test.cpp
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(91,36): warning C4930: MAIN::DynamicArray<std::string> dyn1(void): функция с прототипом не вызвана (предполагалось определение переменной?)
+     Создается библиотека D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2Test.lib и объект D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2Test.exp
+  Lab2Test.vcxproj -> D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2Test.dll

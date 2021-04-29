@@ -2,42 +2,46 @@
 #include "complex.h"
 #include <iostream>
 
-//template LinkedList<int>;
+using namespace std;
+using namespace MAIN;
+
+template LinkedList<int>;
 //template LinkedList<float>;
 //template LinkedList<double>;
 //template LinkedList<complex>;
 
-//using namespace std;
 
 template <class T>
 LinkedList<T>::LinkedList()
 {
-	this->first = NULL;
 	this->last = NULL;
+	this->first = NULL;
 	this->size = 0;
 }
 
 template <class T>
-LinkedList<T>::LinkedList(T* items, int count)
+LinkedList<T>::LinkedList(T* items, int count) : LinkedList<T>::LinkedList()
 {
 	Node<T>* temp = this->first;
 	for (int i = 0; i < count; i++)
-		this.Append(items[i]);
+		this->Append(items[i]);
 }
 
 
 template <class T>
-LinkedList<T>::LinkedList(LinkedList <T>& list)
+LinkedList<T>::LinkedList(LinkedList <T>& list) : LinkedList<T>::LinkedList()
 {
-	
+	for (int i = 0; i < list.GetLength(); i++)
+		this->Append(list[i]);
 }
 
 template <class T>
 void LinkedList<T>::Append(T valueToInsert)
 {
-	Node<T>* newNode;
+	Node<T>* newNode = new Node<T>;
 	newNode->val = valueToInsert;
 	newNode->next = NULL;
+
 	this->size++;
 
 	Node<T>* temp = first;
@@ -52,7 +56,7 @@ void LinkedList<T>::Append(T valueToInsert)
 	}
 	else
 	{
-		first = newNode;
+		this->first = newNode;
 	}
 }
 
@@ -101,7 +105,7 @@ bool LinkedList<T>::Pop()
 template <class T>
 void LinkedList<T>::Print()
 {
-	Node<T>* temp = first;
+	Node<T>* temp = this->first;
 
 	if (temp == NULL)
 	{
@@ -126,67 +130,45 @@ void LinkedList<T>::Print()
 template <class T>
 bool LinkedList<T>::IsEmpty()
 {
-	if (first == NULL && last == NULL) { return true; }
-	else { return false; }
+	if (first == NULL && last == NULL) return true;
+	return false;
 }
 
 template <class T>
 int LinkedList<T>::GetLength()
 {
-	if (first == NULL && last == NULL) { return 0; }
-
-	Node<T>* temp = first;
-	int nodeCounter = 0;
-
-	while (temp != NULL)
-	{
-		nodeCounter = nodeCounter + 1;
-		temp = temp->next;
-	}
-	return nodeCounter;
+	return this->size;
 }
 
-template <class T>
-void LinkedList<T>::Clear()
-{
-	Node<T>* temp = first;
-	while (temp != NULL)
-	{
-		temp = temp->next;
-		first = temp;
-		delete(temp);
-	}
-}
 
 template <class T>
 void LinkedList<T>::Prepand(T valueToInsert)
 {
-	Node<T>* newNode;
-
+	Node<T>* newNode = new Node<T>;
 	newNode->val = valueToInsert;
+	this->size++;
 
-	if (first == NULL)
+	if (this->first == NULL)
 	{
-		first = newNode;
+		this->first = newNode;
 	}
 	else
 	{
-		newNode->next = first;
-		first = newNode;
+		newNode->next = this->first;
+		this->first = newNode;
 	}
 
 }
 
 template <class T>
 T LinkedList<T>::GetFirst() {
-	return this->first->val;
+	return T(this->first->val);
 }
 
 template <class T>
 T LinkedList<T>::GetLast() {
-	return this->last->val;
+	return this->Get(this->GetLength() - 1);
 }
-
 template <class T>
 T LinkedList<T>::Get(int index) {
 	Node<T>* node = this->first;
@@ -197,14 +179,51 @@ T LinkedList<T>::Get(int index) {
 	}
 	return node->val;
 }
+template <class T>
+T LinkedList<T>::operator[](int index) { return this->Get(index); }
 
 template <class T>
-LinkedList<T>* LinkedList<T>::GetSubList(int startIndex, int endIndex) {
-	LinkedList<T> list = new LinkedList<T>();
-	for (int i = startIndex; i < endIndex; i++)
+void LinkedList<T>::InsertAt(T item, int index) {
+	Node<T>* current = this->first;
+	for (int i = 0; i < index - 1; i++)
 	{
-		list.Append(this->Get(i));
+		current = current->next;
 	}
 
-	return list;
+	if (current == NULL) {
+		this->Append(item);
+	}
+	else {
+		Node<T>* tmpItem = new Node<T>;
+		tmpItem->val = item;
+		tmpItem->prev = current;
+		tmpItem->next = current->next;
+		current->next->prev = tmpItem;
+		current->next = tmpItem;
+		this->size++;
+	}
 }
+
+
+//template <class T>
+//LinkedList<T>* LinkedList<T>::GetSubList(int startIndex, int endIndex) {
+//	LinkedList<T> list;
+//	for (int i = startIndex; i < endIndex; i++)
+//		list.Append(this->Get(i));
+//
+//	return list;
+//}
+
+//template <class T>
+//void LinkedList<T>::Set(LinkedList<T>& source) {
+//	for (int i = 0; i < source.GetLength(); i++)
+//	{
+//		this->Append(source.Get(i));
+//	}
+//}
+//
+//template <class T>
+//LinkedList<T>* Concat(LinkedList<T>* list) {
+//	for (int i = 0; i < list->GetLength(); i++)
+//		this->Append(list[i]);
+//}
