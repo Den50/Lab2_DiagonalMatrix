@@ -139,17 +139,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArraySequence.cpp" />
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="Lab2_Diagonal.cpp" />
     <ClCompile Include="LinkedList.cpp" />
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="LinkedListSequence.cpp" />
+    <ClCompile Include="Sequence.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArraySequence.h" />
     <ClInclude Include="complex.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="test.h" />
+    <ClInclude Include="LinkedListSequence.h" />
+    <ClInclude Include="Sequence.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

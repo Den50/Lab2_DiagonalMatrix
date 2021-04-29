@@ -1,12 +1,12 @@
 #pragma once
-// this module contains struct and functions for work with complex numbers
+// this module contains class and in here functions for work with complex numbers
 
 // functions:
-// add(a, b) -> (a_R + b_R) + (a_C + b_C)i
-// minus(a, b) -> (a_R - b_R) + (a_C - b_C)i
-// multiply(a, b) -> (a_R * b_C - a_C * b_R) - (a_C * b_C + a_R * b_R)i
-// division(a, b) -> (a_R + b_R) + (a_C + b_C)i
-// multiplyOnAlpha(a, alpha) -> (a_R + b_R) + (a_C + b_C)i
+//      add(a, b) -> (a_R + b_R) + (a_C + b_C)i
+//      minus(a, b) -> (a_R - b_R) + (a_C - b_C)i
+//      multiply(a, b) -> (a_R * b_C - a_C * b_R) - (a_C * b_C + a_R * b_R)i
+//      division(a, b) -> (a_R + b_R) + (a_C + b_C)i
+//      multiplyOnAlpha(a, alpha) -> (a_R + b_R) + (a_C + b_C)i
 
 
 struct _Complex_ {

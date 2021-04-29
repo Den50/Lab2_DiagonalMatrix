@@ -6,224 +6,217 @@ using namespace std;
 using namespace MAIN;
 
 template LinkedList<int>;
-//template LinkedList<float>;
-//template LinkedList<double>;
-//template LinkedList<complex>;
+template LinkedList<float>;
+template LinkedList<double>;
+//template LinkedList<Complex>;
+
 
 
 template <class T>
-LinkedList<T>::LinkedList()
-{
-	this->last = NULL;
-	this->first = NULL;
-	this->size = 0;
+LinkedList<T>::LinkedList() {
+    size = 0;
+    head_Node = nullptr;
+    end_Node = nullptr;
 }
 
 template <class T>
-LinkedList<T>::LinkedList(T* items, int count) : LinkedList<T>::LinkedList()
-{
-	Node<T>* temp = this->first;
-	for (int i = 0; i < count; i++)
-		this->Append(items[i]);
-}
+LinkedList<T>::LinkedList(T* items, int count) {
+    size = 0;
+    head_Node = nullptr;
+    end_Node = nullptr;
 
-
-template <class T>
-LinkedList<T>::LinkedList(LinkedList <T>& list) : LinkedList<T>::LinkedList()
-{
-	for (int i = 0; i < list.GetLength(); i++)
-		this->Append(list[i]);
+    for (int i = 0; i < count; i++) {
+        Append(items[i]);
+    }
 }
 
 template <class T>
-void LinkedList<T>::Append(T valueToInsert)
-{
-	Node<T>* newNode = new Node<T>;
-	newNode->val = valueToInsert;
-	newNode->next = NULL;
-
-	this->size++;
-
-	Node<T>* temp = first;
-
-	if (temp != NULL)
-	{
-		while (temp->next != NULL)
-		{
-			temp = temp->next;
-		}
-		temp->next = newNode;
-	}
-	else
-	{
-		this->first = newNode;
-	}
-}
-
-template <class T>
-bool LinkedList<T>::Pop()
-{
-	if (first == NULL && last == NULL) { return false; }
-
-	if (first == last)
-	{
-		std::cout << "First is equal to Last." << std::endl;
-		delete(first);
-		first = last = NULL;
-		return true;
-	}
-
-	else
-	{
-		Node<T>* temp = first;
-		int nodeCount = 0;
-
-		while (temp != NULL)
-		{
-			nodeCount = nodeCount + 1;
-			temp = temp->next;
-		}
-
-		Node<T>* temp2 = first;
-
-		for (int i = 1; i < (nodeCount - 1); i++)
-		{
-			temp2 = temp2->next;
-		}
-
-		std::cout << temp2->val << std::endl;
-		delete(temp2->next);
-
-		last = temp2;
-		last->next = NULL;
-		this->size--;
-
-		return true;
-	}
-}
-
-template <class T>
-void LinkedList<T>::Print()
-{
-	Node<T>* temp = this->first;
-
-	if (temp == NULL)
-	{
-		std::cout << "";
-	}
-
-	if (temp->next == NULL)
-	{
-		std::cout << temp->val;
-	}
-	else
-	{
-		while (temp != NULL)
-		{
-			std::cout << temp->val;
-			temp = temp->next;
-			std::cout << ",";
-		}
-	}
-}
-
-template <class T>
-bool LinkedList<T>::IsEmpty()
-{
-	if (first == NULL && last == NULL) return true;
-	return false;
-}
-
-template <class T>
-int LinkedList<T>::GetLength()
-{
-	return this->size;
-}
-
-
-template <class T>
-void LinkedList<T>::Prepand(T valueToInsert)
-{
-	Node<T>* newNode = new Node<T>;
-	newNode->val = valueToInsert;
-	this->size++;
-
-	if (this->first == NULL)
-	{
-		this->first = newNode;
-	}
-	else
-	{
-		newNode->next = this->first;
-		this->first = newNode;
-	}
-
+LinkedList<T>::LinkedList(const LinkedList<T>& list) {
+    size = 0;
+    head_Node = nullptr;
+    end_Node = nullptr;
+    struct Node* cell = list.head_Node;
+    for (int i = 0; i < list.size; i++, cell = cell->next_Node) {
+        Append(cell->value);
+    }
 }
 
 template <class T>
 T LinkedList<T>::GetFirst() {
-	return T(this->first->val);
+    if (head_Node == nullptr) { throw IndexOutOfRange(); }
+
+    return head_Node->value;
 }
 
 template <class T>
 T LinkedList<T>::GetLast() {
-	return this->Get(this->GetLength() - 1);
-}
-template <class T>
-T LinkedList<T>::Get(int index) {
-	Node<T>* node = this->first;
+    if (end_Node == nullptr) { throw IndexOutOfRange(); }
 
-	for (int i = 0; i < index; i++)
-	{
-		node = node->next;
-	}
-	return node->val;
+    return end_Node->value;
 }
+
 template <class T>
-T LinkedList<T>::operator[](int index) { return this->Get(index); }
+T& LinkedList<T>::Get(int index) {
+    if (index < 0 || index >= size) { throw IndexOutOfRange(); }
+
+    struct Node* cell = head_Node;
+    for (int i = 0; i < index; i++, cell = cell->next_Node);
+
+    return cell->value;
+}
+
+template <class T>
+LinkedList<T> LinkedList<T>::GetSubList(int startIndex, int endIndex) {
+    if (startIndex >= size || endIndex >= size || startIndex < 0 || endIndex < 0) {
+        throw IndexOutOfRange();
+    }
+
+    LinkedList<T> new_list = LinkedList<T>();
+    auto* cell = new struct Node;
+    cell = head_Node;
+    for (int i = 0; i < startIndex; i++, cell = cell->next_Node);
+    for (int i = startIndex; i <= endIndex; i++, cell = cell->next_Node) {
+        new_list.Append(cell->value);
+    }
+
+    return new_list;
+}
+
+template <class T>
+int LinkedList<T>::GetLength() {
+    return size;
+}
+
+template <class T>
+void LinkedList<T>::Prepend(T item) {
+    auto* new_cell = new struct Node;
+    new_cell->value = item;
+
+    if (head_Node == nullptr) {
+        end_Node = new_cell;
+    }
+
+    new_cell->next_Node = head_Node;
+    head_Node = new_cell;
+    size++;
+}
+
+template <class T>
+void LinkedList<T>::Append(T item) {
+    auto* new_cell = new struct Node;
+    new_cell->value = item;
+    new_cell->next_Node = nullptr;
+
+    if (head_Node == nullptr) { //случай, когда список пустой
+        head_Node = new_cell;
+        end_Node = new_cell;
+        size = 1;
+        return;
+    }
+
+    end_Node->next_Node = new_cell;
+    end_Node = new_cell;
+    size++;
+}
 
 template <class T>
 void LinkedList<T>::InsertAt(T item, int index) {
-	Node<T>* current = this->first;
-	for (int i = 0; i < index - 1; i++)
-	{
-		current = current->next;
-	}
+    if (index >= size || index < 0) { throw IndexOutOfRange(); }
 
-	if (current == NULL) {
-		this->Append(item);
-	}
-	else {
-		Node<T>* tmpItem = new Node<T>;
-		tmpItem->val = item;
-		tmpItem->prev = current;
-		tmpItem->next = current->next;
-		current->next->prev = tmpItem;
-		current->next = tmpItem;
-		this->size++;
-	}
+    if (index == 0) { Append(item); return; }
+    else if (index == size - 1) { Prepend(item); return; }
+    else {
+        auto* new_cell = new struct Node;
+        new_cell->value = item;
+        struct Node* previous_cell = head_Node;
+        for (int i = 0; i < index - 1; i++, previous_cell = previous_cell->next_Node);
+        new_cell->next_Node = previous_cell->next_Node;
+        previous_cell->next_Node = new_cell;
+        size++;
+    }
+}
+
+template<class T>
+LinkedList<T> LinkedList<T>::Concat(LinkedList<T>* list) {
+    LinkedList<T> new_list = LinkedList<T>();
+
+    struct Node* new_cell = head_Node;
+    for (int i = 0; i < size; i++, new_cell = new_cell->next_Node) {
+        new_list.Append(new_cell->value);
+    }
+
+    new_cell = list->head_Node;
+    for (int i = 0; i < list->size; i++, new_cell = new_cell->next_Node) {
+        new_list.Append(new_cell->value);
+    }
+
+    return new_list;
+}
+
+template<class T>
+T& LinkedList<T>::operator[](int index) {
+    if (index < 0 || index > this->size - 1) {
+        throw IndexOutOfRange();
+    }
+    struct Node* temp = head_Node;
+    for (int i = 0; i < index; i++) {
+        temp = temp->next_Node;
+    }
+    return temp->value;
+}
+
+template<class T>
+LinkedList<T>& LinkedList<T>::operator=(LinkedList<T> linkedlist) {
+    Delete_LinkedList();
+
+    struct Node* cell = linkedlist.head_Node;
+    for (int i = 0; i < linkedlist.size; i++, cell = cell->next_Node) {
+        Append(cell->value);
+    }
+    return *this;
+}
+
+template<class T>
+LinkedList<T>::~LinkedList() {
+    Delete_LinkedList();
+}
+
+template <class T>
+void LinkedList<T>::Delete_LinkedList() {
+    struct Node* this_cell;
+    while (head_Node != nullptr) {
+        this_cell = head_Node;
+        head_Node = head_Node->next_Node;
+        delete this_cell;
+    }
+    end_Node = nullptr;
+    size = 0;
 }
 
 
-//template <class T>
-//LinkedList<T>* LinkedList<T>::GetSubList(int startIndex, int endIndex) {
-//	LinkedList<T> list;
-//	for (int i = startIndex; i < endIndex; i++)
-//		list.Append(this->Get(i));
-//
-//	return list;
-//}
+template<>
+void LinkedList<int>::Print() {
+    for (int i = 0; i < this->size; i++)
+        cout << "Element #" << i << ": " << this->Get(i) << std::endl;
+}
 
-//template <class T>
-//void LinkedList<T>::Set(LinkedList<T>& source) {
-//	for (int i = 0; i < source.GetLength(); i++)
-//	{
-//		this->Append(source.Get(i));
-//	}
-//}
-//
-//template <class T>
-//LinkedList<T>* Concat(LinkedList<T>* list) {
-//	for (int i = 0; i < list->GetLength(); i++)
-//		this->Append(list[i]);
-//}
+
+template<>
+void LinkedList<float>::Print() {
+    for (int i = 0; i < this->size; i++)
+        cout << "Element #" << i << ": " << this->Get(i) << endl;
+}
+
+
+template<>
+void LinkedList<string>::Print() {
+    for (int i = 0; i < this->size; i++)
+        cout << "Element #" << i << ": \"" << this->Get(i) << "\"" << endl;
+}
+
+
+template<>
+void LinkedList<Complex>::Print() {
+    for (int i = 0; i < this->size; i++)
+        cout << "Element #" << i << ": cmlx(" << this->Get(i).getReal() << ", " << this->Get(i).getIm() << "i)" << endl;
+}

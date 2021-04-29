@@ -1,33 +1,45 @@
 #pragma once
 
 namespace MAIN {
-	template <class T> class DynamicArray {
-	private:
-		T* data;
-		int size;
-	public:
-		// Create object
-		DynamicArray();
-		DynamicArray(int size);
-		DynamicArray(T* items, int count);
-		DynamicArray(DynamicArray<T>& dynamicArray);
+    template <class T>
+    class DynamicArray {
+    private:
+        T* array;
+        int len; //длина массива
+        int size; //на сколько элементов массив расчитан - кол-во €чеек
+    public:
+        class IndexOutOfRange {};
 
-		// decompose
-		T Get(int index);
-		int GetSize();
+        //—оздание объекта
+        DynamicArray(T* items, int count); //создает пустой массив и копирует элементы из переданного массива (получаетс€ идентичный по размеру массив)
+        explicit DynamicArray(int newSize); //создает пустой массив заданой длины
+        DynamicArray(DynamicArray<T> const& dynamicArray); //создание копии исходного масива
+        DynamicArray(); //создание пустого массива
 
-		// operations
-		void Set(int index, T value);
-		void Resize(int newSize);
-		T operator[](int index);
-		bool operator==(DynamicArray<T>& arr);
+        //”даление объекта
+        ~DynamicArray();//деструктор
+        void Delete_DynamicArray();//операци€ удалени€ массива
 
-		// other methods
-		void Print();
+        //ƒекомпозици€
+        T& Get(int index);//возвращает элемент по индексу
+        int GetSize(); //возвращает длину массива(кол-во всех €чеек)
+        int GetLen();//возвращает длину массива (кол-во заполненных €чеек)
 
-		//Destructor
-		~DynamicArray() {
-			delete[] this->data;
-		};
-	};
+        //ќперации над параметрами массивов
+        void Set(int index, T value); //«адает элемент по индексу
+        void Resize(int newSize); //измен€ет размерность массива
+        void Relen(int newLen); //»змен€ет длину массива
+
+        //ѕерегрузка операторов
+        DynamicArray<T>& operator = (DynamicArray<T> dynamicArray) {
+            Resize(dynamicArray.GetSize());
+            size = dynamicArray.GetSize();
+            len = dynamicArray.GetLen();
+            for (int i = 0; i < len; i++) {
+                array[i] = dynamicArray.array[i];
+            }
+            return *this;
+        }
+    };
+
 }
