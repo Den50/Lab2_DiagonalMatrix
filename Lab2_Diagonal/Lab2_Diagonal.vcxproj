@@ -88,10 +88,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,6 +147,7 @@
     <ClCompile Include="Lab2_Diagonal.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="LinkedListSequence.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Sequence.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +156,7 @@
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedListSequence.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="Sequence.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

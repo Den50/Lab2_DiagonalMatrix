@@ -1,8 +1,6 @@
-﻿  ArraySequence.cpp
-  Lab2_Diagonal.cpp
-D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Lab2_Diagonal.cpp(29,26): warning C4930: MAIN::ArraySequence<float> LL_d(void): функция с прототипом не вызвана (предполагалось определение переменной?)
-D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Lab2_Diagonal.cpp(28,26): warning C4930: MAIN::DynamicArray<std::string> Array(void): функция с прототипом не вызвана (предполагалось определение переменной?)
-D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Lab2_Diagonal.cpp(31,31): warning C4930: MAIN::LinkedListSequence<float> LL_c(void): функция с прототипом не вызвана (предполагалось определение переменной?)
-D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Lab2_Diagonal.cpp(30,21): warning C4930: MAIN::LinkedList<int> LL(void): функция с прототипом не вызвана (предполагалось определение переменной?)
+﻿  Lab2_Diagonal.cpp
+  Matrix.cpp
   Создание кода...
-  Lab2_Diagonal.vcxproj -> D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2_Diagonal.exe
+Lab2_Diagonal.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __thiscall MAIN::Matrix<int>::Matrix<int>(void)" (??0?$Matrix@H@MAIN@@QAE@XZ) в функции _main.
+Lab2_Diagonal.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __thiscall MAIN::Matrix<int>::~Matrix<int>(void)" (??1?$Matrix@H@MAIN@@QAE@XZ) в функции _main.
+D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2_Diagonal.exe : fatal error LNK1120: неразрешенных внешних элементов: 2
