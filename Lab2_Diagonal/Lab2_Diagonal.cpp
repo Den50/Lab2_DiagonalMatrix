@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "Matrix.h"
+#include "Vector.h"
 #include "complex.h"
 #include "DynamicArray.h"
 #include "LinkedList.h"
@@ -14,10 +15,13 @@ int main()
 {
 
     const int size_a = 5;
+    int* elems = new int[size_a];
 
-    int** items = new int*[size_a];
-    for (int i = 0; i < size_a; i++)
-        items[i] = new int[size_a];
+    double** items = new double*[size_a];
+    for (int i = 0; i < size_a; i++) {
+        elems[i] = i * i / 2;
+        items[i] = new double[size_a];
+    }
 
 
     for (int i = 0; i < size_a; i++){
@@ -33,8 +37,16 @@ int main()
     LinkedList<int> LL();
     LinkedListSequence<float> LL_c();*/
 
-    Matrix<int> matrix;
-    //cout << matrix;
+    //Matrix<double> matrix(items, size_a);
+    //matrix.ElemTransformOfRows(1, 2, 5);
+    //matrix.ElemTransformOfCols(4, 2, 3);
+
+    ////matrix.NormM();
+    //cout << matrix.NormM() << " " << matrix.NormL() << " " << matrix.NormK();
+    Vector<int> vec(elems, size_a);
+
+    cout << vec;
+
 
     cout << "Hello World!\n";
     return 0;

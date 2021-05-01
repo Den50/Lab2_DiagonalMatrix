@@ -1,6 +1,7 @@
 #pragma once
 #include "Sequence.h"
 #include "DynamicArray.h"
+#include "DynamicArray.cpp"
 
 using namespace MAIN;
 
