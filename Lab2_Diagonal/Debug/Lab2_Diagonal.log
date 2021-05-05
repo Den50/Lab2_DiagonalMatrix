@@ -1,2 +1,16 @@
-﻿  Lab2_Diagonal.cpp
-  Lab2_Diagonal.vcxproj -> D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2_Diagonal.exe
+﻿  ArraySequence.cpp
+  DynamicArray.cpp
+  Lab2_Diagonal.cpp
+  LinkedList.cpp
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\LinkedList.cpp(219,17): error C2065: Complex: необъявленный идентификатор
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\LinkedList.cpp(219,6): error C2923: MAIN::LinkedList: "Complex" не является допустимым аргументом типа шаблон для параметра "T"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\LinkedList.cpp(219,27): error C2955: "MAIN::LinkedList": для использования класс шаблон требуется список аргументов шаблон
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\LinkedList.h(5): message : см. объявление "MAIN::LinkedList"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\LinkedList.cpp(219,1): error C2910: MAIN::LinkedList<T>::Print: явная специализация невозможна
+  LinkedListSequence.cpp
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\LinkedListSequence.cpp : fatal error C1041: невозможно открыть базу данных программы D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Debug\vc142.pdb; если несколько файлов CL.EXE осуществляют запись в один и тот же PDB-файл, воспользуйтесь /FS
+  Matrix.cpp
+  Sequence.cpp
+  Vector.cpp
+  complex.cpp
+  Создание кода...

@@ -66,7 +66,10 @@ namespace MAIN {
         int GetLength() {
             return dynamicArray.GetLen();
         }//Возвращает длину последовательности
-
+        ArraySequence<T>& Set(T item, int index){
+            dynamicArray.Set(item, index);
+            return *this;
+        }
         //Операции
         void Append(T item) {
             int free_cells = dynamicArray.GetSize() - dynamicArray.GetLen();

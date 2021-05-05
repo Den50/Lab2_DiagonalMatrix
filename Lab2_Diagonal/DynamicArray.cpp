@@ -1,5 +1,5 @@
 #include "DynamicArray.h"
-#include "complex.h"
+//#include "complex.h"
 #include <stdexcept>
 #include <string>
 #include <cassert>
@@ -16,7 +16,7 @@ template DynamicArray<int>;
 template DynamicArray<long>;
 template DynamicArray<float>;
 template DynamicArray<double>;
-template DynamicArray<Complex>;
+//template DynamicArray<Complex>;
 template DynamicArray<string>;
 
 

@@ -65,6 +65,18 @@ namespace MAIN {
         int GetSize() {
             return size;
         }
+        void Set(T item, int row, int col) {
+            ArraySequence<ArraySequence<T>> items;
+            
+            for (int i = 0; i < size; i++){
+                ArraySequence<T> _item;
+                for (int j = 0; j < size; j++){
+                    i == row && j == col? _item.Append(item): _item.Append(this->Get(i, j));
+                }
+                items.Append(_item);
+            }
+            matrix = items;
+        }
 
         //Операции
         Matrix<T> SumOfMatrix(Matrix<T>& b_matrix) {

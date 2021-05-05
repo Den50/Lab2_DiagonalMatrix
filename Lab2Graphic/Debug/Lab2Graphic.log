@@ -1,0 +1,4 @@
+﻿  MainForm.cpp
+  MainForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+ArraySequence.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/INCREMENTAL:NO"
+  Lab2Graphic.vcxproj -> D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2Graphic.exe
