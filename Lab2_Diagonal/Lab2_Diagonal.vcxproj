@@ -156,6 +156,9 @@
     <ClInclude Include="ArraySequence.h" />
     <ClInclude Include="complex.h" />
     <ClInclude Include="DynamicArray.h" />
+    <ClInclude Include="Interface.h" />
+    <ClInclude Include="InterfaceMatrix.h" />
+    <ClInclude Include="InterfaceVector.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedListSequence.h" />
     <ClInclude Include="Matrix.h" />

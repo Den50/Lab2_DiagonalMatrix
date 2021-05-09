@@ -173,6 +173,7 @@ namespace MAIN {
                     summ += abs(matrix.Get(j).Get(i));
                 }
                 if (summ > _max) _max = summ;
+                //cout << typeid(T) << endl;
             }
             return _max;
         }

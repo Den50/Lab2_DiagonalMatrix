@@ -6,7 +6,7 @@
 #include "LinkedListSequence.h"
 #include "ArraySequence.h"
 #include <string>
-#include <sstream>
+//#include <sstream>
 
 using namespace std;
 using namespace MAIN;
@@ -64,6 +64,7 @@ int main()
 
     std::cout << "the number is " << c << "\n" << c.real() << "  " << c.imag();
 
+    
 
     cout << "Hello World!\n";
     return 0;

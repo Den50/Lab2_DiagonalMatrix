@@ -1,3 +1,57 @@
-﻿  MainForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+﻿  MainForm.cpp
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(673,25): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(766,15): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(993,50): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1011,54): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Matrix.h(187,1): warning C4244: +=: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Matrix.h(181): message : во время компиляции функции-члена класс шаблон "T MAIN::Matrix<T>::NormK(void)"
+          with
+          [
+              T=float
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1058): message : выполняется компиляция ссылки на экземпляр шаблон функции "T MAIN::Matrix<T>::NormK(void)"
+          with
+          [
+              T=float
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(36): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "MAIN::Matrix<float>"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Matrix.h(187,1): warning C4244: +=: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Matrix.h(181): message : во время компиляции функции-члена класс шаблон "T MAIN::Matrix<T>::NormK(void)"
+          with
+          [
+              T=int
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1056): message : выполняется компиляция ссылки на экземпляр шаблон функции "T MAIN::Matrix<T>::NormK(void)"
+          with
+          [
+              T=int
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(34): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "MAIN::Matrix<int>"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Matrix.h(190,24): warning C4244: return: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+  MainForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
 ArraySequence.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/INCREMENTAL:NO"
   Lab2Graphic.vcxproj -> D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2Graphic.exe
