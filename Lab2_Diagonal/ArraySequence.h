@@ -13,42 +13,49 @@ namespace MAIN {
     public:
         class IndexOutOfRange : DynamicArray<T> ::IndexOutOfRange {};
 
-        //Создание объекта
+        // Create new Array
         ArraySequence(T* items, int count) {
             dynamicArray = DynamicArray<T>(items, count);
-        }//Создает последовательность с элементами из исходного массива
+        }
+        // create new emty Array
         ArraySequence() {
             dynamicArray = DynamicArray<T>(0);
-        }//Создает пустую последовательность
+        }
+        // create new array extends operand - copeis constructor
         explicit ArraySequence(const DynamicArray<T>& dynamicArray) {
             dynamicArray = DynamicArray<T>(dynamicArray);
-        }//Копирующий конструктор
+        }
 
-        //Удаление объекта
+        // destructor
         ~ArraySequence() {
             dynamicArray.Delete_DynamicArray();
-        }//деструктор
+        }
+        // Delete array function
         void Delete_ArraySequence() {
             dynamicArray.Delete_DynamicArray();
-        }//функция удаления послдовательности
+        }
 
-        //Декомпозиция
+        // Decompose
+
+        // Get first item
         T GetFirst() {
             return dynamicArray.Get(0);
-        }//Возвращает первй элемент
+        }
+        // Get last item
         T GetLast() {
             return dynamicArray.Get(dynamicArray.GetLen() - 1);
-        }//Возвращает последний элемент
+        }
+        // get item by index
         T& Get(int index) {
             return dynamicArray.Get(index);
-        }//Возвращает элемент по индексу
+        }
+        // Get subsequence from this sequence [startIndex, endIndex]
         ArraySequence<T>* GetSubsequence(int startIndex, int endIndex) {
             if (startIndex >= dynamicArray.GetLen() || endIndex >= dynamicArray.GetLen() || startIndex < 0 || endIndex < 0) {
                 throw IndexOutOfRange();
             }
 
             auto* new_arraySequence = new ArraySequence<T>;
-            //        new_arraySequence = ArraySequence<T>();
             int iter;
             if (startIndex < endIndex) {
                 iter = 1;
@@ -62,15 +69,20 @@ namespace MAIN {
             }
 
             return new_arraySequence;
-        }//Получить список из всех элементов, начиная с startIndex и заканчивая endIndex
+        }
+        // get size this sequence
         int GetLength() {
             return dynamicArray.GetLen();
-        }//Возвращает длину последовательности
+        }
+
+        // Operations
+
+        // set item on index position
         ArraySequence<T>& Set(T item, int index){
             dynamicArray.Set(item, index);
             return *this;
         }
-        //Операции
+        // Append item to end of array
         void Append(T item) {
             int free_cells = dynamicArray.GetSize() - dynamicArray.GetLen();
             if (free_cells == 0) {
@@ -78,7 +90,9 @@ namespace MAIN {
             }
             dynamicArray.Relen(dynamicArray.GetLen() + 1);
             dynamicArray.Set(dynamicArray.GetLen() - 1, item);
-        }//дабавляет элемент в конец последовательности(при необходимости выделяет доп. ячейки)
+        }
+
+        // prepand item to start of array
         void Prepend(T item) {
             dynamicArray.Resize(dynamicArray.GetLen() + 1);
             dynamicArray.Relen(dynamicArray.GetLen() + 1);
@@ -91,7 +105,8 @@ namespace MAIN {
                 dynamicArray.Set(i, saved_cell);
                 saved_cell = this_cell;
             }
-        }//Добавляет элемент в начало строки
+        }
+        // insert item to array by index
         void InsertAt(T item, int index) {
             if (index < 0 || index >= this->GetLength()) { throw IndexOutOfRange(); }
 
@@ -105,7 +120,8 @@ namespace MAIN {
                 dynamicArray.Set(i, saved_cell);
                 saved_cell = this_cell;
             }
-        }//Вставляет элемент по заданному индексу
+        }
+        // concat two sequence to one
         ArraySequence<T>* Concat(Sequence<T>* list) {
             auto* new_arraySequence = new ArraySequence<T>;
             //new_arraySequence = ArraySequence<T>();
@@ -118,9 +134,9 @@ namespace MAIN {
             }
 
             return new_arraySequence;
-        }//Сцепляет две последовательности
+        }
 
-        //Перегрузка операторов
+        // overloading operators =
         ArraySequence<T>& operator = (ArraySequence<T> n_dynamicArray) {
             dynamicArray = n_dynamicArray.dynamicArray;
             return *this;

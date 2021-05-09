@@ -1,5 +1,5 @@
 #include "LinkedList.h"
-#include "complex.h"
+#include <complex>
 #include <iostream>
 
 using namespace std;
@@ -8,7 +8,8 @@ using namespace MAIN;
 template LinkedList<int>;
 template LinkedList<float>;
 template LinkedList<double>;
-//template LinkedList<Complex>;
+template LinkedList<complex<double>>;
+template LinkedList<string>;
 
 
 
@@ -107,7 +108,7 @@ void LinkedList<T>::Append(T item) {
     new_cell->value = item;
     new_cell->next_Node = nullptr;
 
-    if (head_Node == nullptr) { //случай, когда список пустой
+    if (head_Node == nullptr) {
         head_Node = new_cell;
         end_Node = new_cell;
         size = 1;
@@ -194,29 +195,8 @@ void LinkedList<T>::Delete_LinkedList() {
 }
 
 
-template<>
-void LinkedList<int>::Print() {
+template<class T>
+void LinkedList<T>::Print() {
     for (int i = 0; i < this->size; i++)
         cout << "Element #" << i << ": " << this->Get(i) << std::endl;
-}
-
-
-template<>
-void LinkedList<float>::Print() {
-    for (int i = 0; i < this->size; i++)
-        cout << "Element #" << i << ": " << this->Get(i) << endl;
-}
-
-
-template<>
-void LinkedList<string>::Print() {
-    for (int i = 0; i < this->size; i++)
-        cout << "Element #" << i << ": \"" << this->Get(i) << "\"" << endl;
-}
-
-
-template<>
-void LinkedList<Complex>::Print() {
-    for (int i = 0; i < this->size; i++)
-        cout << "Element #" << i << ": cmlx(" << this->Get(i).getReal() << ", " << this->Get(i).getIm() << "i)" << endl;
 }

@@ -1,5 +1,5 @@
 #include "DynamicArray.h"
-//#include "complex.h"
+#include <complex>
 #include <stdexcept>
 #include <string>
 #include <cassert>
@@ -16,7 +16,7 @@ template DynamicArray<int>;
 template DynamicArray<long>;
 template DynamicArray<float>;
 template DynamicArray<double>;
-//template DynamicArray<Complex>;
+template DynamicArray<complex<double>>;
 template DynamicArray<string>;
 
 
@@ -44,14 +44,14 @@ void DynamicArray<T>::Resize(int newSize) {
         if (len > newSize) { len = newSize; }
         array = new_array;
         return;
-    }// укорачивание массива
+    }
 
     if (newSize > 0 && size == 0) {
         T* new_array = new T[newSize];
         delete[] array;
         size = newSize;
         array = new_array;
-    }//увеличение размера массива 0 длины
+    }
 
     if (newSize > size) {
         T* new_array = new T[newSize];
@@ -62,7 +62,7 @@ void DynamicArray<T>::Resize(int newSize) {
         size = newSize;
         array = new_array;
         return;
-    }// увеличение длины
+    }
 }
 
 template <class T>
@@ -137,7 +137,7 @@ void DynamicArray<T>::Set(int index, T value) {
 }
 
 template <class T>
-void DynamicArray<T> ::Delete_DynamicArray() {
+void DynamicArray<T>::Delete_DynamicArray() {
     delete[] array;
     array = nullptr;
     size = 0;

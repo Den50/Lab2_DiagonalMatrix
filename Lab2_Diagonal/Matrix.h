@@ -12,13 +12,15 @@ namespace MAIN {
         ArraySequence<ArraySequence<T>> matrix;
         int size = 0;
     public:
-        //Создание объекта
+        // Creating a matrix
+
+        // Creating an empty matrix
         Matrix() {
             ArraySequence<ArraySequence<T>> new_matrix;
             matrix = new_matrix;
             size = 0;
-        }//Создание пустой матрицы
-
+        }
+        // Creating a matrix by array
         Matrix(T** items, int count) {
             for (int i = 0; i < count; i++) {
                 ArraySequence<T> element;
@@ -28,7 +30,8 @@ namespace MAIN {
                 matrix.Append(element);
             }
             size = count;
-        }//Создание матрицы по массиву
+        }
+        // Copying the original matrix
         explicit Matrix(const ArraySequence<ArraySequence<T>>& n_matrix) {
             int count = n_matrix.dynamicArray.GetLen();
             for (int i = 0; i < count; i++) {
@@ -40,25 +43,28 @@ namespace MAIN {
                 size = n_matrix.dynamicArray.GetLen();
             }
             //matrix = n_matrix;
-        }//Копирование исходной матрицы
+        }
 
-        //Удаление объекта
+        // Deleting an object
+
+        // deconstructor
         ~Matrix() {
             for (int i = 0; i < size; i++) {
                 matrix.Get(i).Delete_ArraySequence();
             }
             matrix.Delete_ArraySequence();
             size = 0;
-        }//деконструктор
+        }
+        // delete function
         void Delete_Matrix() {
             for (int i = 0; i < size; i++) {
                 matrix.Get(i).Delete_ArraySequence();
             }
             matrix.Delete_ArraySequence();
             size = 0;
-        }//функция удаления
+        }
 
-        //Декомпозиция
+        // Decomposition
         T Get(int line, int column) {
             return matrix.Get(line).Get(column);
         }
@@ -78,7 +84,9 @@ namespace MAIN {
             matrix = items;
         }
 
-        //Операции
+        // Operations
+
+        // sum of matrices
         Matrix<T> SumOfMatrix(Matrix<T>& b_matrix) {
             Matrix<T> new_matrix;
             for (int i = 0; i < size; i++) {
@@ -90,8 +98,9 @@ namespace MAIN {
             }
             new_matrix.size = size;
             return new_matrix;
-        }//сумма матриц
+        }
 
+        //matrix substruction
         Matrix<T> SubOfMatrix(Matrix<T>& b_matrix) {
             Matrix<T> new_matrix;
             for (int i = 0; i < size; i++) {
@@ -103,9 +112,10 @@ namespace MAIN {
             }
             new_matrix.size = size;
             return new_matrix;
-        }//разность матриц
+        }
 
-        Matrix<T> MultOfMatrix(T scalar) {
+        // multiply of matrix on alpha
+        Matrix<T> MultOfMatrixOnAlpha(T scalar) {
             Matrix<T> new_matrix;
             for (int i = 0; i < size; i++) {
                 ArraySequence<T> element;
@@ -116,7 +126,23 @@ namespace MAIN {
             }
             new_matrix.size = size;
             return new_matrix;
-        }//Умножение на скаляр
+        }
+        // multiply of matrices on each other
+        Matrix<T> MultOfMatrix(Matrix<T>& b_matrix) {
+            Matrix<T> new_matrix;
+            for (int i = 0; i < size; i++) {
+                ArraySequence<T> elements;
+                for (int j = 0; j < size; j++) {
+                    T element = 0;
+                    for (int k = 0; k < size; k++)
+                        element += this->Get(i, k) * b_matrix.Get(k, j);
+                    elements.Append(element);
+                }
+                new_matrix.matrix.Append(elements);
+            }
+            new_matrix.size = size;
+            return new_matrix;
+        }
 
         /*
         * Matrix norms are often used in determining the error of various numerical methods.
@@ -163,6 +189,7 @@ namespace MAIN {
             return sqrt(summ_Z0);
         }
 
+        // elementary rows transformations in a given matrix
         void ElemTransformOfRows(int row1, int row2, T scalar) {
             Matrix<T> new_matrix;
             for (int i = 0; i < size; i++) {
@@ -182,6 +209,8 @@ namespace MAIN {
             new_matrix.size = size;
             matrix = new_matrix.matrix;
         }
+
+        // elementary transformations of columns in a given matrix
         void ElemTransformOfCols(int col1, int col2, T scalar) {
             Matrix<T> new_matrix;
             for (int i = 0; i < size; i++) {
@@ -201,15 +230,15 @@ namespace MAIN {
         }
 
 
-        //Перегрузка опреаторов
+        // Overload of opreators
         Matrix<T>& operator = (Matrix<T> n_matrix) {
             matrix = n_matrix.matrix;
             size = n_matrix.size;
             return *this;
         }
         friend std::ostream& operator << (std::ostream& cout, Matrix<T>& n_matrix) {
-            for (int j = 0; j < n_matrix.GetSize(); j++) { // по строкам
-                for (int i = 0; i < n_matrix.GetSize(); i++) {
+            for (int j = 0; j < n_matrix.GetSize(); j++) { // by rows
+                for (int i = 0; i < n_matrix.GetSize(); i++) { // by cols
                     cout << n_matrix.Get(j, i) << "   ";
                 }
                 cout << std::endl;

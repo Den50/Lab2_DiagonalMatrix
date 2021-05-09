@@ -9,28 +9,31 @@ namespace MAIN {
     private:
         ArraySequence<T> vector;
     public:
-        //Создание объекта
+        // create new empty vector
         Vector() {
             ArraySequence<T> new_vector;
             vector = new_vector;
-        }//создание пустого вектора
+        }
+        // create new vector with start array items
         Vector(T* coords, int count) {
             ArraySequence<T> new_vector(coords, count);
             vector = new_vector;
-        }// создание вектора по массиву
+        }
+        // create vector by array [ArraySequence<T>]
         explicit Vector(ArraySequence<T>& n_vector) {
             vector = n_vector;
-        }//копирующий конструктор
+        }
 
-        //Удаление объекта
+        // Destructor
         ~Vector() {
             vector.Delete_ArraySequence();
         }
+        // Delete this vector
         void Delete_Vector() {
             vector.Delete_ArraySequence();
         }
 
-        //Декомпозиция
+        // Decompose
         T& GetCoord(int index) {
             return vector.Get(index);
         }
@@ -38,7 +41,7 @@ namespace MAIN {
             return vector.GetLength();
         }
 
-        //Операции
+        // Operations
         Vector<T> SumOfVectors(Vector<T> b) {
             Vector<T> new_vector;
             if (vector.GetLength() == b.vector.GetLength()) {
@@ -51,7 +54,7 @@ namespace MAIN {
                 int minlen;
                 Vector<T> biger_vector;
                 if (vector.GetLength() > b.vector.GetLength()) {
-                    biger_vector = Vector<T>(vector);//c *this тоже работает
+                    biger_vector = Vector<T>(vector);
                     maxlen = vector.GetLength();
                     minlen = b.vector.GetLength();
                 }
@@ -69,7 +72,8 @@ namespace MAIN {
                 }
             }
             return new_vector;
-        }//cложит вектора любой размерности
+        }
+        // summ two vectors with diff dimenasion
         Vector<T> SubOfVectors(Vector<T> b) {
             Vector<T> new_vector;
             if (vector.GetLength() == b.vector.GetLength()) {
@@ -83,7 +87,7 @@ namespace MAIN {
                 int scalar;
                 Vector<T> biger_vector;
                 if (vector.GetLength() > b.vector.GetLength()) {
-                    biger_vector = Vector<T>(vector);//c *this тоже работает
+                    biger_vector = Vector<T>(vector);
                     scalar = 1;
                     maxlen = vector.GetLength();
                     minlen = b.vector.GetLength();
@@ -104,6 +108,7 @@ namespace MAIN {
             }
             return new_vector;
         }
+        // Multipy two vectors
         Vector<T> MulOfVectors(T scalar) {
             Vector<T> new_vector;
             for (int i = 0; i < vector.GetLength(); i++) {
@@ -111,20 +116,20 @@ namespace MAIN {
             }
             return new_vector;
         }
+        // norm of vector
         Vector<T> Normalization() {
             T len = 0;
             for (int i = 0; i < vector.GetLength(); i++) {
                 len = len + vector.Get(i) * vector.Get(i);
             }
-            //нужно сделать еще модуль len для комплексных чисел
             len = sqrt(len);
             Vector<T> new_vector;
             for (int i = 0; i < vector.GetLength(); i++) {
                 new_vector.vector.Append(this->vector.Get(i) / len);
             }
-            //деление сделать нормальное
             return new_vector;
-        }// TODO надо додлеать для комплексных
+        }
+
         T ScalarMulOfVectors(Vector<T> b) {
             T scalar = vector.Get(0) * b.vector.Get(0);
             int minlen;
@@ -141,7 +146,7 @@ namespace MAIN {
             return scalar;
         }
 
-        //Перегрузка операторов
+        // printing
         friend std::ostream& operator << (std::ostream& cout, Vector<T>& n_vector) {
             cout << '{';
             for (int i = 0; i < n_vector.GetVectorLen(); i++) {
@@ -153,11 +158,10 @@ namespace MAIN {
             cout << '}';
             return cout;
         }
-
+        // overloading operators "="
         Vector<T>& operator = (Vector<T> n_vector) {
             vector = n_vector.vector;
             return *this;
         }
-
     };
 }

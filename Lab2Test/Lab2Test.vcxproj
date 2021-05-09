@@ -100,7 +100,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>complex.obj;DynamicArray.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>complex.obj;DynamicArray.obj;LinkedList.obj;ArraySequence.obj;LinkedListSequence.obj;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>

@@ -5,32 +5,32 @@ namespace MAIN {
     class DynamicArray {
     private:
         T* array;
-        int len; //длина массива
-        int size; //на сколько элементов массив расчитан - кол-во €чеек
+        int len; // length array
+        int size; // how many elements the array is designed for - number of cells
     public:
         class IndexOutOfRange {};
 
-        //—оздание объекта
-        DynamicArray(T* items, int count); //создает пустой массив и копирует элементы из переданного массива (получаетс€ идентичный по размеру массив)
-        explicit DynamicArray(int newSize); //создает пустой массив заданой длины
-        DynamicArray(DynamicArray<T> const& dynamicArray); //создание копии исходного масива
-        DynamicArray(); //создание пустого массива
+        // create object
+        DynamicArray(T* items, int count); // creates an empty array and copies the elements from the passed array (an identical array is obtained)
+        explicit DynamicArray(int newSize); // creates an empty array of the specified length
+        DynamicArray(DynamicArray<T> const& dynamicArray); // creating a copy of the original masive
+        DynamicArray(); // creating an empty array
 
-        //”даление объекта
-        ~DynamicArray();//деструктор
-        void Delete_DynamicArray();//операци€ удалени€ массива
+        // Deleting an object
+        ~DynamicArray(); // destructor
+        void Delete_DynamicArray(); // delete array operation
 
-        //ƒекомпозици€
-        T& Get(int index);//возвращает элемент по индексу
-        int GetSize(); //возвращает длину массива(кол-во всех €чеек)
-        int GetLen();//возвращает длину массива (кол-во заполненных €чеек)
+        // Decomposition
+        T& Get(int index); // returns the element by index
+        int GetSize(); // returns the length of the array(number of all cells)
+        int GetLen(); // returns the length of the array (number of filled cells)
 
-        //ќперации над параметрами массивов
-        void Set(int index, T value); //«адает элемент по индексу
-        void Resize(int newSize); //измен€ет размерность массива
-        void Relen(int newLen); //»змен€ет длину массива
+        // Operations on array parameters 
+        void Set(int index, T value); // Sets the element by index
+        void Resize(int newSize); // changes the dimension of the array
+        void Relen(int newLen); // Changes the length of the array
 
-        //ѕерегрузка операторов
+        // Operator overloading
         DynamicArray<T>& operator = (DynamicArray<T> dynamicArray) {
             Resize(dynamicArray.GetSize());
             size = dynamicArray.GetSize();

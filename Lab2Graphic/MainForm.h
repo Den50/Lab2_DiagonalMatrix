@@ -105,6 +105,7 @@ namespace Lab2Graphic {
 	private: System::Windows::Forms::TextBox^ B_input_item;
 	private: System::Windows::Forms::Button^ B_button_append;
 	private: System::Windows::Forms::Label^ B_label_matrix;
+	private: System::Windows::Forms::Label^ Result_label_matrix;
 
 
 
@@ -147,6 +148,7 @@ namespace Lab2Graphic {
 			this->B_input_item = (gcnew System::Windows::Forms::TextBox());
 			this->B_button_append = (gcnew System::Windows::Forms::Button());
 			this->B_label_matrix = (gcnew System::Windows::Forms::Label());
+			this->Result_label_matrix = (gcnew System::Windows::Forms::Label());
 			this->select_operation = (gcnew System::Windows::Forms::ComboBox());
 			this->button_calc = (gcnew System::Windows::Forms::Button());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -168,7 +170,8 @@ namespace Lab2Graphic {
 			this->A_input_item->Size = System::Drawing::Size(110, 20);
 			this->A_input_item->TabIndex = 1;
 			this->A_input_item->Text = L"Item";
-			this->A_input_item->TextChanged += gcnew System::EventHandler(this, &MainForm::textBox2_TextChanged);
+			this->A_input_item->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainForm::A_input_item_KeyPress);
+			
 			// 
 			// A_select_type
 			// 
@@ -217,7 +220,7 @@ namespace Lab2Graphic {
 			this->A_label_matrix->Name = L"A_label_matrix";
 			this->A_label_matrix->Size = System::Drawing::Size(44, 13);
 			this->A_label_matrix->TabIndex = 6;
-			this->A_label_matrix->Text = L"Matrix...";
+			this->A_label_matrix->Text = L"A Matrix:";
 			// 
 			// label_info
 			// 
@@ -302,6 +305,7 @@ namespace Lab2Graphic {
 			this->B_input_item->Size = System::Drawing::Size(110, 20);
 			this->B_input_item->TabIndex = 15;
 			this->B_input_item->Text = L"Item";
+			this->B_input_item->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainForm::B_input_item_KeyPress);
 			// 
 			// B_button_append
 			// 
@@ -320,7 +324,16 @@ namespace Lab2Graphic {
 			this->B_label_matrix->Name = L"B_label_matrix";
 			this->B_label_matrix->Size = System::Drawing::Size(44, 13);
 			this->B_label_matrix->TabIndex = 17;
-			this->B_label_matrix->Text = L"Matrix...";
+			this->B_label_matrix->Text = L"B Matrix:";
+			// 
+			// Result_label_matrix
+			// 
+			this->Result_label_matrix->AutoSize = true;
+			this->Result_label_matrix->Location = System::Drawing::Point(377, 285);
+			this->Result_label_matrix->Name = L"Result_label_matrix";
+			this->Result_label_matrix->Size = System::Drawing::Size(44, 13);
+			this->Result_label_matrix->TabIndex = 17;
+			this->Result_label_matrix->Text = L"Result Matrixes:";
 			// 
 			// select_operation
 			// 
@@ -353,7 +366,9 @@ namespace Lab2Graphic {
 			// label_operation
 			// 
 			this->label_operation->AutoSize = true;
-			this->label_operation->Location = System::Drawing::Point(166, 334);
+			this->label_operation->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 12.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label_operation->Location = System::Drawing::Point(166, 284);
 			this->label_operation->Name = L"label_operation";
 			this->label_operation->Size = System::Drawing::Size(28, 13);
 			this->label_operation->TabIndex = 22;
@@ -369,6 +384,7 @@ namespace Lab2Graphic {
 			this->Controls->Add(this->button_calc);
 			this->Controls->Add(this->select_operation);
 			this->Controls->Add(this->B_label_matrix);
+			this->Controls->Add(this->Result_label_matrix);
 			this->Controls->Add(this->B_button_append);
 			this->Controls->Add(this->B_input_item);
 			this->Controls->Add(this->label3);
@@ -416,11 +432,25 @@ namespace Lab2Graphic {
 			A_code_type = TYPE_INT;
 		}
 		else if (type == "double") {
-			label_info->Text += "double\n";
+			double** nullItems = new double* [size];
+			for (int i = 0; i < size; i++) {
+				nullItems[i] = new double[size];
+				for (int j = 0; j < size; j++) {
+					nullItems[i][j] = 0;
+				}
+			}
+			A_Matrix_double = MAIN::Matrix<double>(nullItems, A_size);
 			A_code_type = TYPE_DOUBLE;
 		}
 		else if (type == "float") {
-			label_info->Text += "float\n";
+			float** nullItems = new float* [size];
+			for (int i = 0; i < size; i++) {
+				nullItems[i] = new float[size];
+				for (int j = 0; j < size; j++) {
+					nullItems[i][j] = 0;
+				}
+			}
+			A_Matrix_float = MAIN::Matrix<float>(nullItems, A_size);
 			A_code_type = TYPE_FLOAT;
 		}
 		else if (type == "complex") {
@@ -435,9 +465,9 @@ namespace Lab2Graphic {
 	}
 	private: System::Void B_button_create_Click(System::Object^ sender, System::EventArgs^ e) {
 		//String info("");
-		const int size = System::Convert::ToInt32(B_input_size->Text);
+		const int size = B_size = System::Convert::ToInt32(B_input_size->Text);
 		String^ type = B_select_type->Text;
-		label_info->Text += "\n\nB:\nsize: " + B_input_size->Text + "\n";
+		label_info->Text += "\n\nB:\nsize: " + B_size + "\n";
 		label_info->Text += "type: " + type + "\n";
 		B_label_notification->Text = "Matrix B (" + B_input_size->Text + " x " + B_input_size->Text + ") is created!";
 		//label_notification->ForeColor = "green";
@@ -453,11 +483,25 @@ namespace Lab2Graphic {
 
 		}
 		else if (type == "double") {
-			label_info->Text += "double\n";
-			A_code_type = TYPE_DOUBLE;
+			double** nullItems = new double* [size];
+			for (int i = 0; i < size; i++) {
+				nullItems[i] = new double[size];
+				for (int j = 0; j < size; j++) {
+					nullItems[i][j] = 0;
+				}
+			}
+			B_Matrix_double = MAIN::Matrix<double>(nullItems, size);
+
 		}
 		else if (type == "float") {
-			label_info->Text += "float\n";
+			float** nullItems = new float* [size];
+			for (int i = 0; i < size; i++) {
+				nullItems[i] = new float[size];
+				for (int j = 0; j < size; j++) {
+					nullItems[i][j] = 0;
+				}
+			}
+			B_Matrix_float = MAIN::Matrix<float>(nullItems, size);
 		}
 		else if (type == "complex") {
 			label_info->Text += "complex\n";
@@ -466,6 +510,9 @@ namespace Lab2Graphic {
 			label_info->Text += "string\n";
 		}
 	}
+	private: void clear_Result_label() {
+		this->Result_label_matrix->Text = L"Result Matrixes:";
+	}
 	private: System::Void A_button_append_Click(System::Object^ sender, System::EventArgs^ e) {
 		//A_label_matrix->Text += "\n";
 		switch (A_code_type) {
@@ -473,16 +520,227 @@ namespace Lab2Graphic {
 				int row = A_pointer_item / A_size;
 				int col = A_pointer_item % A_size;
 				int item = System::Convert::ToInt32(A_input_item->Text);
-				if (col == 0) A_label_matrix->Text += "\n";
-				A_Matrix_int.Set(item, row, col);
-				A_label_matrix->Text += " " + A_input_item->Text + " ";
-				A_pointer_item++;
-			}
+				if (row < A_size) {
+					if (col == 0) A_label_matrix->Text += "\n";
+					A_Matrix_int.Set(item, row, col);
+					A_label_matrix->Text += " " + A_input_item->Text + " ";
+					A_pointer_item++;
+				}
+				else {
+					A_label_notification->Text = "item limit exceeded";
+					A_label_notification->ForeColor = System::Drawing::Color::Red;
+				}
+			}; break;
+			case TYPE_DOUBLE: {
+				int row = A_pointer_item / A_size;
+				int col = A_pointer_item % A_size;
+				double item = System::Convert::ToDouble(A_input_item->Text);
+				if (row < A_size) {
+					if (col == 0) A_label_matrix->Text += "\n";
+					A_Matrix_double.Set(item, row, col);
+					A_label_matrix->Text += " " + A_input_item->Text + " ";
+					A_pointer_item++;
+				}
+				else {
+					A_label_notification->Text = "item limit exceeded";
+					A_label_notification->ForeColor = System::Drawing::Color::Red;
+				}
+			}; break;
+			case TYPE_FLOAT: {
+				int row = A_pointer_item / A_size;
+				int col = A_pointer_item % A_size;
+				double item = System::Convert::ToDouble(A_input_item->Text);
+				if (row < A_size) {
+					if (col == 0) A_label_matrix->Text += "\n";
+					A_Matrix_float.Set(item, row, col);
+					A_label_matrix->Text += " " + A_input_item->Text + " ";
+					A_pointer_item++;
+				}
+				else {
+					A_label_notification->Text = "item limit exceeded";
+					A_label_notification->ForeColor = System::Drawing::Color::Red;
+				}
+			}; break;
+		}
+	}
+	private: System::Void A_input_item_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (e->KeyChar == (char)Keys::Enter) {
+			A_button_append_Click(sender, e);
+			A_input_item->Text = "";
 		}
 	}
 	private: System::Void B_button_append_Click(System::Object^ sender, System::EventArgs^ e) {
+		//A_label_matrix->Text += "\n";
+		switch (B_code_type) {
+		case TYPE_INT: {
+			int row = B_pointer_item / B_size;
+			int col = B_pointer_item % B_size;
+			int item = System::Convert::ToInt32(B_input_item->Text);
+			if (row < B_size) {
+				if (col == 0) B_label_matrix->Text += "\n";
+				B_Matrix_int.Set(item, row, col);
+				B_label_matrix->Text += " " + B_input_item->Text + " ";
+				B_pointer_item++;
+			}
+			else {
+				B_label_notification->Text = "item limit exceeded";
+				B_label_notification->ForeColor = System::Drawing::Color::Red;
+			}
+		}; break;
+		case TYPE_DOUBLE: {
+			int row = B_pointer_item / B_size;
+			int col = B_pointer_item % B_size;
+			double item = System::Convert::ToDouble(B_input_item->Text);
+			if (row < B_size) {
+				if (col == 0) B_label_matrix->Text += "\n";
+				B_Matrix_double.Set(item, row, col);
+				B_label_matrix->Text += " " + B_input_item->Text + " ";
+				B_pointer_item++;
+			}
+			else {
+				B_label_notification->Text = "item limit exceeded";
+				B_label_notification->ForeColor = System::Drawing::Color::Red;
+			}
+		}; break;
+		case TYPE_FLOAT: {
+			int row = B_pointer_item / B_size;
+			int col = B_pointer_item % B_size;
+			float item = System::Convert::ToDouble(B_input_item->Text);
+			if (row < B_size) {
+				if (col == 0) B_label_matrix->Text += "\n";
+				B_Matrix_float.Set(item, row, col);
+				B_label_matrix->Text += " " + B_input_item->Text + " ";
+				B_pointer_item++;
+			}
+			else {
+				B_label_notification->Text = "item limit exceeded";
+				B_label_notification->ForeColor = System::Drawing::Color::Red;
+			}
+		}; break;
+		}
+	}
+	private: System::Void B_input_item_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		 if (e->KeyChar == (char)Keys::Enter) {
+			  B_button_append_Click(sender, e);
+			  B_input_item->Text = "";
+		 }
 	}
 	private: System::Void button_calc_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ operation = select_operation->Text;
+		if (operation == "+") {
+			code_operation = OPERATION_PLUS;
+			label_operation->Text = "+";
+			Matrix<int> summ_int;
+			Matrix<double> summ_double;
+			Matrix<float> summ_float;
+			switch (A_code_type){
+				case TYPE_INT: {
+					summ_int = A_Matrix_int.SumOfMatrix(B_Matrix_int); 
+					clear_Result_label();
+					for (int i = 0; i < A_size * A_size; i++) {
+						if (i % A_size == 0) Result_label_matrix->Text += "\n";
+						Result_label_matrix->Text += " " + summ_int.Get(i / A_size, i % A_size) + " ";
+					}
+					break;
+				}
+				case TYPE_DOUBLE: {
+					summ_double = A_Matrix_double.SumOfMatrix(B_Matrix_double);
+					clear_Result_label();
+					for (int i = 0; i < A_size * A_size; i++) {
+						if (i % A_size == 0) Result_label_matrix->Text += "\n";
+						Result_label_matrix->Text += " " + summ_double.Get(i / A_size, i % A_size) + " ";
+					}
+					break;
+				}
+				case TYPE_FLOAT: {
+					summ_float = A_Matrix_float.SumOfMatrix(B_Matrix_float);
+					clear_Result_label();
+					for (int i = 0; i < A_size * A_size; i++) {
+						if (i % A_size == 0) Result_label_matrix->Text += "\n";
+						Result_label_matrix->Text += " " + summ_float.Get(i / A_size, i % A_size) + " ";
+					}
+					break;
+				}
+			default:
+				break;
+			}
+		}
+		else if (operation == "-") {
+			code_operation = OPERATION_PLUS;
+			label_operation->Text = "-";
+			Matrix<int> subs_int;
+			Matrix<double> subs_double;
+			Matrix<float> subs_float;
+			switch (A_code_type) {
+			case TYPE_INT: {
+				subs_int = A_Matrix_int.SubOfMatrix(B_Matrix_int);
+				clear_Result_label();
+				for (int i = 0; i < A_size * A_size; i++) {
+					if (i % A_size == 0) Result_label_matrix->Text += "\n";
+					Result_label_matrix->Text += " " + subs_int.Get(i / A_size, i % A_size) + " ";
+				}
+				break;
+			}
+			case TYPE_DOUBLE: {
+				subs_double = A_Matrix_double.SubOfMatrix(B_Matrix_double);
+				clear_Result_label();
+				for (int i = 0; i < A_size * A_size; i++) {
+					if (i % A_size == 0) Result_label_matrix->Text += "\n";
+					Result_label_matrix->Text += " " + subs_double.Get(i / A_size, i % A_size) + " ";
+				}
+				break;
+			}
+			case TYPE_FLOAT: {
+				subs_float = A_Matrix_float.SubOfMatrix(B_Matrix_float);
+				clear_Result_label();
+				for (int i = 0; i < A_size * A_size; i++) {
+					if (i % A_size == 0) Result_label_matrix->Text += "\n";
+					Result_label_matrix->Text += " " + subs_float.Get(i / A_size, i % A_size) + " ";
+				}
+				break;
+			}
+			default:
+				break;
+			}
+		}
+		else if (operation == "*") {
+			code_operation = OPERATION_PLUS;
+			label_operation->Text = "*";
+			Matrix<int> mult_int;
+			Matrix<double> mult_double;
+			Matrix<float> mult_float;
+			switch (A_code_type) {
+			case TYPE_INT: {
+				mult_int = A_Matrix_int.MultOfMatrix(B_Matrix_int);
+				clear_Result_label();
+				for (int i = 0; i < A_size * A_size; i++) {
+					if (i % A_size == 0) Result_label_matrix->Text += "\n";
+					Result_label_matrix->Text += " " + mult_int.Get(i / A_size, i % A_size) + " ";
+				}
+				break;
+			}
+			case TYPE_DOUBLE: {
+				mult_double = A_Matrix_double.MultOfMatrix(B_Matrix_double);
+				clear_Result_label();
+				for (int i = 0; i < A_size * A_size; i++) {
+					if (i % A_size == 0) Result_label_matrix->Text += "\n";
+					Result_label_matrix->Text += " " + mult_double.Get(i / A_size, i % A_size) + " ";
+				}
+				break;
+			}
+			case TYPE_FLOAT: {
+				mult_float = A_Matrix_float.MultOfMatrix(B_Matrix_float);
+				clear_Result_label();
+				for (int i = 0; i < A_size * A_size; i++) {
+					if (i % A_size == 0) Result_label_matrix->Text += "\n";
+					Result_label_matrix->Text += " " + mult_float.Get(i / A_size, i % A_size) + " ";
+				}
+				break;
+			}
+			default:
+				break;
+			}
+		}
 	}
 };
 }
