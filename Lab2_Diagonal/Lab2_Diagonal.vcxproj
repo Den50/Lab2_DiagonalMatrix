@@ -145,6 +145,9 @@
     <ClCompile Include="ArraySequence.cpp" />
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
+    <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="InterfaceMatrix.cpp" />
+    <ClCompile Include="InterfaceVector.cpp" />
     <ClCompile Include="Lab2_Diagonal.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="LinkedListSequence.cpp" />

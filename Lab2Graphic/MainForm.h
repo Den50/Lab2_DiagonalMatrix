@@ -137,6 +137,7 @@ namespace Lab2Graphic {
 	private: System::Windows::Forms::Label^ label_operation;
 	private: System::Windows::Forms::ComboBox^ select_norm;
 	private: System::Windows::Forms::Button^ button_calc_norm;
+	private: System::Windows::Forms::Button^ button_clear_all;
 
 
 
@@ -182,6 +183,7 @@ namespace Lab2Graphic {
 			this->label_operation = (gcnew System::Windows::Forms::Label());
 			this->select_norm = (gcnew System::Windows::Forms::ComboBox());
 			this->button_calc_norm = (gcnew System::Windows::Forms::Button());
+			this->button_clear_all = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// A_input_size
@@ -450,11 +452,24 @@ namespace Lab2Graphic {
 			this->button_calc_norm->UseVisualStyleBackColor = true;
 			this->button_calc_norm->Click += gcnew System::EventHandler(this, &MainForm::button_calc_norm_Click);
 			// 
+			// button_clear_all
+			// 
+			this->button_clear_all->BackColor = System::Drawing::Color::Red;
+			this->button_clear_all->ForeColor = System::Drawing::Color::WhiteSmoke;
+			this->button_clear_all->Location = System::Drawing::Point(810, 204);
+			this->button_clear_all->Name = L"button_clear_all";
+			this->button_clear_all->Size = System::Drawing::Size(121, 30);
+			this->button_clear_all->TabIndex = 25;
+			this->button_clear_all->Text = L"Clear All";
+			this->button_clear_all->UseVisualStyleBackColor = false;
+			this->button_clear_all->Click += gcnew System::EventHandler(this, &MainForm::button_clear_all_Click);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1012, 556);
+			this->Controls->Add(this->button_clear_all);
 			this->Controls->Add(this->button_calc_norm);
 			this->Controls->Add(this->select_norm);
 			this->Controls->Add(this->label_operation);
@@ -1079,5 +1094,25 @@ namespace Lab2Graphic {
 			}
 		}
 	}
+private: System::Void button_clear_all_Click(System::Object^ sender, System::EventArgs^ e) {
+	// clear inputs
+	A_input_size->Text = "0";
+	B_input_size->Text = "0";
+
+	A_select_type->Text = "type";
+	B_select_type->Text = "type";
+
+	A_input_item->Text = "item";
+	B_input_item->Text = "item";
+
+	input_alpha->Text = "alpha";
+
+	// clear labels
+	label_info->Text = "info:\n";
+
+	A_label_matrix->Text = "A Matrix: \n";
+	B_label_matrix->Text = "B Matrix: \n";
+	Result_label_matrix->Text = "Result: \n";
+}
 };
 }

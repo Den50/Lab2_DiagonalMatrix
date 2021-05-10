@@ -1,16 +1,16 @@
 ﻿  MainForm.cpp
-D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(673,25): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(688,25): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(766,15): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
-D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(993,50): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(781,15): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1008,50): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=int
           ]
-D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1011,54): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1026,54): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
@@ -25,7 +25,7 @@ D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Matrix.h(181): message : во врем�
           [
               T=float
           ]
-D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1058): message : выполняется компиляция ссылки на экземпляр шаблон функции "T MAIN::Matrix<T>::NormK(void)"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1073): message : выполняется компиляция ссылки на экземпляр шаблон функции "T MAIN::Matrix<T>::NormK(void)"
           with
           [
               T=float
@@ -41,7 +41,7 @@ D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Matrix.h(181): message : во врем�
           [
               T=int
           ]
-D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1056): message : выполняется компиляция ссылки на экземпляр шаблон функции "T MAIN::Matrix<T>::NormK(void)"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Graphic\MainForm.h(1071): message : выполняется компиляция ссылки на экземпляр шаблон функции "T MAIN::Matrix<T>::NormK(void)"
           with
           [
               T=int

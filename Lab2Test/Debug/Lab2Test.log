@@ -1,13 +1,17 @@
 ﻿  Lab2Test.cpp
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(339,1): warning C4305: инициализация: усечение из "double" в "float"
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(344,1): warning C4305: аргумент: усечение из "double" в "float"
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(364,1): warning C4305: инициализация: усечение из "double" в "float"
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(379,1): warning C4305: аргумент: усечение из "double" в "float"
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(380,1): warning C4305: аргумент: усечение из "double" в "float"
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(386,1): warning C4305: аргумент: усечение из "double" в "float"
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(387,1): warning C4305: аргумент: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(341,1): warning C4305: инициализация: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(346,1): warning C4305: аргумент: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(366,1): warning C4305: инициализация: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(381,1): warning C4305: аргумент: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(382,1): warning C4305: аргумент: усечение из "double" в "float"
 D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(388,1): warning C4305: аргумент: усечение из "double" в "float"
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(431,1): warning C4305: аргумент: усечение из "double" в "float"
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(432,1): warning C4305: аргумент: усечение из "double" в "float"
-D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(437,1): warning C4305: инициализация: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(389,1): warning C4305: аргумент: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(390,1): warning C4305: аргумент: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(433,1): warning C4305: аргумент: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(434,1): warning C4305: аргумент: усечение из "double" в "float"
+D:\labs\Lab2\Lab2_Diagonal\Lab2Test\Lab2Test.cpp(439,1): warning C4305: инициализация: усечение из "double" в "float"
+Vector.obj : warning LNK4099: "vc142.pdb" PDB не найден с "Vector.obj" или на "D:\labs\Lab2\Lab2_Diagonal\Debug\vc142.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+Matrix.obj : warning LNK4099: "vc142.pdb" PDB не найден с "Matrix.obj" или на "D:\labs\Lab2\Lab2_Diagonal\Debug\vc142.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+ArraySequence.obj : warning LNK4099: "vc142.pdb" PDB не найден с "ArraySequence.obj" или на "D:\labs\Lab2\Lab2_Diagonal\Debug\vc142.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+DynamicArray.obj : warning LNK4099: "vc142.pdb" PDB не найден с "DynamicArray.obj" или на "D:\labs\Lab2\Lab2_Diagonal\Debug\vc142.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
   Lab2Test.vcxproj -> D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2Test.dll

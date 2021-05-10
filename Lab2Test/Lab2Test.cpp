@@ -5,6 +5,8 @@
 #include "../Lab2_Diagonal/ArraySequence.h"
 #include "../Lab2_Diagonal/LinkedList.h"
 #include "../Lab2_Diagonal/LinkedListSequence.h"
+#include "../Lab2_Diagonal/Matrix.h"
+#include "../Lab2_Diagonal/Vector.h"
 #include "../Lab2_Diagonal/complex.h"
 
 
@@ -442,6 +444,153 @@ namespace Lab2Test
 			list12.Delete_LinkedList();
 			list13.Delete_LinkedList();
 			list14.Delete_LinkedList();
+		}
+	};
+
+	TEST_CLASS(TestMatrix) {
+		TEST_METHOD(constructor) {
+			// _1_
+			MAIN::Matrix<string> string_mx;
+
+			// _2_
+			const int SIZE = 1000;
+			int** items = new int*[SIZE];
+			for (int i = 0; i < SIZE; i++) {
+				items[i] = new int[SIZE];
+				for (int j = 0; j < SIZE; j++)
+					items[i][j] = i * j;
+			}
+
+			MAIN::Matrix<int> mx(items, SIZE);
+			Assert::IsTrue(mx.GetSize() == SIZE);
+			for (int  i = 0; i < mx.GetSize(); i++)
+			{
+				for (int j = 0; j < mx.GetSize(); j++)
+				{
+					Assert::IsTrue(mx.Get(i, j) == i * j);
+				}
+			}
+
+			// _3_
+			MAIN::Matrix<int> _mx(mx);
+			Assert::IsTrue(_mx.GetSize() == SIZE);
+			for (int i = 0; i < _mx.GetSize(); i++)
+			{
+				for (int j = 0; j < _mx.GetSize(); j++)
+				{
+					Assert::IsTrue(_mx.Get(i, j) == i * j);
+				}
+			}
+		}
+
+		TEST_METHOD(operations) {
+			int data_A[3][3] = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
+			int data_B[3][3] = { {4, 6, 5}, {3, 1, 2}, {9, 0, 8} };
+			int** _data_A = new int* [3];
+			for (int i = 0; i < 3; i++) {
+				_data_A[i] = new int[3];
+				for (int j = 0; j < 3; j++)
+					_data_A[i][j] = data_A[i][j];
+			}
+			int** _data_B = new int* [3];
+			for (int i = 0; i < 3; i++) {
+				_data_B[i] = new int[3];
+				for (int j = 0; j < 3; j++)
+					_data_B[i][j] = data_B[i][j];
+			}
+			int data_alpha = 3;
+			int data_Summ[3][3] = { {5, 8, 8}, {7, 6, 8}, {16, 8, 17} };
+			int data_Subs[3][3] = { {-3, -4, -2}, {1, 4, 4}, {-2, 8, 1} };
+			int data_Mult[3][3] = { {37, 8, 33}, {85, 29, 78}, {133, 50, 123} };
+			int data_MultOnAlpha[3][3] = { {3, 6, 9}, {12, 15, 18}, {21, 24, 27} };
+
+			MAIN::Matrix<int> A(_data_A, 3);
+			MAIN::Matrix<int> B(_data_B, 3);
+
+			
+			MAIN::Matrix<int> Summ = A.SumOfMatrix(B); // Summ
+			MAIN::Matrix<int> Subs = A.SubOfMatrix(B); // Subs
+			MAIN::Matrix<int> Mult = A.MultOfMatrix(B); // Multiply
+			MAIN::Matrix<int> MultOnAlpha = A.MultOfMatrixOnAlpha(data_alpha); // multiply on alpha
+			for (int i = 0; i < 3; i++){
+				for (int j = 0; j < 3; j++){
+					Assert::IsTrue(Summ.Get(i, j) == data_Summ[i][j]);
+					Assert::IsTrue(Subs.Get(i, j) == data_Subs[i][j]);
+					Assert::IsTrue(Mult.Get(i, j) == data_Mult[i][j]);
+					Assert::IsTrue(MultOnAlpha.Get(i, j) == data_MultOnAlpha[i][j]);
+				}
+			}
+
+ 
+
+		}
+	};
+
+	TEST_CLASS(TestVector) {
+		TEST_METHOD(constructors) {
+			const int SIZE = 10000;
+			int* items = new int[SIZE];
+			for (int i = 0; i < SIZE; i++)
+				items[i] = i * i * 2;
+
+			// _1_
+			MAIN::Vector<int> vec1;
+			Assert::IsTrue(vec1.GetVectorLen() == 0);
+
+			// _2_
+			MAIN::Vector<int> vec2(items, SIZE);
+			Assert::IsTrue(vec2.GetVectorLen() == SIZE);
+			for (int i = 0; i < SIZE; i++)
+				Assert::IsTrue(vec2.GetCoord(i) == i * i * 2);
+
+			// _3_
+			MAIN::Vector<int> vec2_cpy(vec2);
+			Assert::IsTrue(vec2_cpy.GetVectorLen() == SIZE);
+			for (int i = 0; i < SIZE; i++)
+				Assert::IsTrue(vec2_cpy.GetCoord(i) == i * i * 2);
+		}
+
+		TEST_METHOD(operations) {
+			const int SIZE = 4;
+			int data_A[SIZE] = { 1, 2, 3, 4 };
+			int data_B[SIZE] = { 4, 2, 5, 10 };
+
+			int* _data_A = new int[SIZE];
+			for (int i = 0; i < SIZE; i++)
+				_data_A[i] = data_A[i];
+			int* _data_B = new int[SIZE];
+			for (int i = 0; i < SIZE; i++)
+				_data_B[i] = data_B[i];
+
+			int data_alpha = 3;
+
+			int data_Summ[SIZE] = { 5, 4, 8, 14 };
+			int data_Subs[SIZE] = { -3, 0, -2, -6 };
+			int data_ScalarMult = 63;
+			int data_A_Mult[SIZE] = { 3, 6, 9, 12 };
+			int data_B_Mult[SIZE] = { 12, 6, 15, 30 };
+
+			// Operations with vectors
+
+			MAIN::Vector<int> A(_data_A, SIZE);
+			MAIN::Vector<int> B(_data_B, SIZE);
+
+			MAIN::Vector<int> Summ = A.SumOfVectors(B);
+			MAIN::Vector<int> Subs = A.SubOfVectors(B);
+			MAIN::Vector<int> MultA = A.MulOfVectors(data_alpha);
+			MAIN::Vector<int> MultB = B.MulOfVectors(data_alpha);
+			int scalar = A.ScalarMulOfVectors(B);
+
+			// Conditionals
+			for (int i = 0; i < SIZE; i++)
+			{
+				Assert::IsTrue(Summ.GetCoord(i) == data_Summ[i]);
+				Assert::IsTrue(Subs.GetCoord(i) == data_Subs[i]);
+				Assert::IsTrue(MultA.GetCoord(i) == data_A_Mult[i]);
+				Assert::IsTrue(MultB.GetCoord(i) == data_B_Mult[i]);
+				Assert::IsTrue(scalar == data_ScalarMult);
+			}
+
 		}
 	};
 }
