@@ -1,7 +1,7 @@
 #include "Interface.h"
 #include <iostream>
 
-void menuAll() {
+void MainInterface() {
     int var;
     cout << "Выберете вариант, с которым будете работать\n"
         << "\t1: Вектор\n"
@@ -10,8 +10,8 @@ void menuAll() {
     cin >> var;
 
     switch (var) {
-        case 1: menuVector(); break;
-        case 2: menuMatrix(); break;
+        case 1: InterfaceVector(); break;
+        case 2: InterfaceMatrix(); break;
         default: break;
     }
 }

@@ -11,7 +11,7 @@ int chooseFunction();
 template<class T>
 void saveVector(ArraySequence<Vector<T>>* Arr, Vector<T>* n_vector);
 
-void menuVector();
+void InterfaceVector();
 //1
 void inputAndSaveVector(ArraySequence<Vector<int>>* intArr,
     ArraySequence<Vector<float>>* floatArr,

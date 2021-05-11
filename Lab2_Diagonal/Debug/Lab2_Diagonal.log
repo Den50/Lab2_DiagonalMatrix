@@ -1,2 +1,20 @@
-﻿  Lab2_Diagonal.cpp
+﻿  Interface.cpp
+  InterfaceMatrix.cpp
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\InterfaceMatrix.cpp(140,9): warning C4101: column2: неиспользованная локальная переменная
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\InterfaceMatrix.cpp(100): message : выполняется компиляция ссылки на экземпляр шаблон функции "void functionMatrixTyped<int>(MAIN::ArraySequence<MAIN::Matrix<int>> *)"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\InterfaceMatrix.cpp(136,7): warning C4101: scalar: неиспользованная локальная переменная
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\InterfaceMatrix.cpp(139,9): warning C4101: column1: неиспользованная локальная переменная
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\InterfaceMatrix.cpp(138,9): warning C4101: line2: неиспользованная локальная переменная
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\InterfaceMatrix.cpp(137,9): warning C4101: line1: неиспользованная локальная переменная
+  InterfaceVector.cpp
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Vector.h(125,23): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\Vector.h(120): message : во время компиляции функции-члена класс шаблон "MAIN::Vector<int> MAIN::Vector<int>::Normalization(void)"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\InterfaceVector.cpp(153): message : выполняется компиляция ссылки на экземпляр шаблон функции "MAIN::Vector<int> MAIN::Vector<int>::Normalization(void)"
+D:\labs\Lab2\Lab2_Diagonal\Lab2_Diagonal\InterfaceVector.cpp(58): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "MAIN::Vector<int>"
+  Lab2_Diagonal.cpp
+  Создание кода...
   Lab2_Diagonal.vcxproj -> D:\labs\Lab2\Lab2_Diagonal\Debug\Lab2_Diagonal.exe

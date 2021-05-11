@@ -65,8 +65,8 @@ namespace MAIN {
         }
 
         // Decomposition
-        T Get(int line, int column) {
-            return matrix.Get(line).Get(column);
+        T Get(int row, int col) {
+            return matrix.Get(row).Get(col);
         }
         int GetSize() {
             return size;
@@ -115,12 +115,12 @@ namespace MAIN {
         }
 
         // multiply of matrix on alpha
-        Matrix<T> MultOfMatrixOnAlpha(T scalar) {
+        Matrix<T> MultOfMatrixOnAlpha(T alpha) {
             Matrix<T> new_matrix;
             for (int i = 0; i < size; i++) {
                 ArraySequence<T> element;
                 for (int j = 0; j < size; j++) {
-                    element.Append(matrix.Get(i).Get(j) * scalar);
+                    element.Append(matrix.Get(i).Get(j) * alpha);
                 }
                 new_matrix.matrix.Append(element);
             }

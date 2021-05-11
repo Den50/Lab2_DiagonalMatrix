@@ -8,7 +8,7 @@ using namespace std;
 
 int chooseTypeMatrix();
 int chooseFunctionMatrix();
-void menuMatrix();
+void InterfaceMatrix();
 
 //1
 void inputAndSaveMatrix(ArraySequence<Matrix<int>>* intArr,

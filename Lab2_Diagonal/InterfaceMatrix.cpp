@@ -31,7 +31,7 @@ void outputTypedMatrix(ArraySequence<Matrix<T>>* Arr, int index) {
     auto k = Arr->Get(index);
     cout << k << endl;
 }
-void menuMatrix() {
+void InterfaceMatrix() {
     auto* intArr = new ArraySequence<Matrix<int>>;
     auto* floatArr = new ArraySequence<Matrix<float>>;
     auto* complexArr = new ArraySequence<Matrix<complex<int>>>;

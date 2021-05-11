@@ -36,7 +36,7 @@ void outputTypedVector(ArraySequence<Vector<T>>* Arr, int index) {
     cout << k << endl;
 }
 
-void menuVector() {
+void InterfaceVector() {
     auto* intArr = new ArraySequence<Vector<int>>;
     auto* floatArr = new ArraySequence<Vector<float>>;
     auto* complexArr = new ArraySequence<Vector<complex<int>>>;

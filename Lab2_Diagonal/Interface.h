@@ -6,5 +6,5 @@
 
 using namespace std;
 
-void menuAll();
+void MainInterface();
 
